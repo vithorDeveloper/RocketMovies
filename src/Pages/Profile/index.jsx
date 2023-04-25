@@ -7,6 +7,7 @@ import {Button} from '../../Components/button'
 export function Profile(){
   return(
     <Container>
+      
         <header>
           <FiArrowLeft size={18} />
           <Link to="/">Voltar</Link> 

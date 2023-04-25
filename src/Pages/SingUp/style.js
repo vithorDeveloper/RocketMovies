@@ -40,12 +40,6 @@ export const Form = styled.form`
     >button{
       margin: 2.4rem 0 4.8rem;
     }
-
-    >a{
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
 `
 
 export const Background = styled.div`

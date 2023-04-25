@@ -17,6 +17,8 @@ export const Container = styled.div`
     background-color: transparent;
 
     padding-left: 1.6rem;
+
+    color: white;
   }
 
   >svg{
