@@ -1,8 +1,12 @@
 import { Container } from './style'
 import { Input } from '../input'
 import { Link } from "react-router-dom"
+import { useAuth } from '../../hooks/auth'
+import { TextButton } from '../textButton'
 
 export function Header() {
+
+  const { singOut } = useAuth()
 
   return (
     <Container>
@@ -11,12 +15,14 @@ export function Header() {
       
         <Input placeholder="Pesquisar pelo texto" />
       
-        <Link to="/profile">
+        
 
           <div>
             <p>Vithor Santos</p>
-            <span>sair</span>
+            <TextButton title="sair" onClick={ singOut }></TextButton> 
           </div>
+          
+        <Link to="/profile">
           
           <img 
             src="https://github.com/vithorDeveloper.png"

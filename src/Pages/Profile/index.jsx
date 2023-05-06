@@ -1,10 +1,30 @@
-import { FiArrowLeft, FiCamera, FiLock, FiMail, FiUser } from 'react-icons/fi'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import {useAuth} from '../../hooks/auth'
 import {Container, Form, Avatar} from './style'
 import {Input} from '../../Components/input'
 import {Button} from '../../Components/button'
+import { FiArrowLeft, FiCamera, FiLock, FiMail, FiUser } from 'react-icons/fi'
 
 export function Profile(){
+    const {user, updateProfile} = useAuth()
+
+    const [name, setName] = useState(user.name)
+    const [email, setEmail] = useState(user.email)
+    const [passwordNew, setPasswordNew] = useState()
+    const [PasswordOld, setPasswordOld] = useState()
+
+    async function handleUpdateProfile(){
+      const user = {
+        name,
+        email,
+        password: passwordNew,
+        oldPassword: PasswordOld,
+      }
+
+      await updateProfile({user})
+    }
+
   return(
     <Container>
       
@@ -31,12 +51,34 @@ export function Profile(){
 
           </Avatar>
 
-            <Input icon={FiUser} Placeholder="Nome"/>
-            <Input icon={FiMail} Placeholder="E-mail"/>
-            <Input icon={FiLock} Placeholder="Senha atual"/>
-            <Input icon={FiLock} Placeholder="Nova senha"/>
+            <Input 
+            icon={FiUser} 
+            placeholder="Nome"
+            value = {name}
+            onChange={e => setName(e.target.value)}
+            />
 
-            <Button title="Salvar"/>
+            <Input 
+            icon={FiMail} 
+            placeholder="E-mail"
+            value = {email}
+            onChange={e => setEmail(e.target.value)}
+            />
+
+            <Input 
+            icon={FiLock} 
+            placeholder="Senha atual"
+            onChange={e => setPasswordOld(e.target.value)}
+            />
+
+            <Input 
+            icon={FiLock} 
+            placeholder="Nova senha"
+            onChange={e => setPasswordNew(e.target.value)}
+            />
+
+
+            <Button title="Salvar" onClick={handleUpdateProfile}/>
 
         </Form>
   </Container>

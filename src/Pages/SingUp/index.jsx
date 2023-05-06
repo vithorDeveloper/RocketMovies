@@ -1,9 +1,11 @@
 import { useState} from "react"
-import { Link} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {FiMail, FiLock, FiUser} from "react-icons/fi"
 import { Container, Background, Form } from "./style";
 import { Input } from "../../Components/input";
 import { Button } from "../../Components/button";
+import { TextButton } from "../../Components/textButton"
+import { api } from "../../services/index";
 
 export function Register(){
 
@@ -12,7 +14,22 @@ export function Register(){
   const [password, setPassword] = useState("")
 
   function handleSignUp(){
-    console.log(name, email, password)
+    if(!name || !email || !password){
+      alert("existem campos vazios")
+    }
+
+    api.post("/users", {name, email, password})
+    .then(() => {
+      alert("usuario cadastrado com sucesso")
+    })
+    .catch(error => {
+      if(error.response){
+        alert(error.response.data.message)
+      }
+      else{
+        alert("erro ao cadastrar")
+      }
+    })
   }
 
   return(
@@ -48,7 +65,7 @@ export function Register(){
           
           <Button title = "Cadastrar" onClick = {handleSignUp}/>
 
-          <Link to="/">Voltar para o login</Link>
+          <Link to="/"><TextButton title = "Voltar para o login"></TextButton></Link>
           
         </Form>
 
