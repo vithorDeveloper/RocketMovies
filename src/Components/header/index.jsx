@@ -3,10 +3,14 @@ import { Input } from '../input'
 import { Link } from "react-router-dom"
 import { useAuth } from '../../hooks/auth'
 import { TextButton } from '../textButton'
+import { api } from '../../services'
+import defaultAvatar from '../../assets/avatar_placeholder.svg'
 
 export function Header() {
 
-  const { singOut } = useAuth()
+  const { singOut, user } = useAuth()
+
+  const userAvatar = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : defaultAvatar
 
   return (
     <Container>
@@ -14,18 +18,16 @@ export function Header() {
       <h1>RocketMovies</h1>
       
         <Input placeholder="Pesquisar pelo texto" />
-      
-        
 
           <div>
-            <p>Vithor Santos</p>
+            <p>{user.name}</p>
             <TextButton title="sair" onClick={ singOut }></TextButton> 
           </div>
           
         <Link to="/profile">
           
           <img 
-            src="https://github.com/vithorDeveloper.png"
+            src={userAvatar}
             alt='foto de perfil'
           />
           
