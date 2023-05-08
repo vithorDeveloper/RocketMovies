@@ -18,6 +18,7 @@ export function New(){
   const [newTag, setNewTag] = useState("")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
+  const [notes, setNotes] = useState("")
 
   const navigate = useNavigate()
 
@@ -32,7 +33,11 @@ export function New(){
     }
 
     async function handleNewNote(){
-      await api.post("/notesMovies", {title, description, tag})
+      if(!title || !notes || !newTag){
+        alert("exitem campos vazios ou que faltam ser adicionados")
+      }
+
+      await api.post("/notesMovies", {movie_title:title, movie_for_the_note:notes, movie_description:description, movieTags:tag})
   
       alert("nota criada com sucesso")
   
@@ -59,7 +64,10 @@ export function New(){
               onChange={e => setTitle(e.target.value)}
               />
 
-              <Input placeholder="Sua nota (de 0 a 5)"/>
+              <Input 
+              placeholder="Sua nota (de 0 a 5)"
+              onChange={e => setNotes(e.target.value)}
+              />
             </div>
 
             <TextArea 

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 import {Container, Main, Title, Info} from './style'
 import {Header} from '../../Components/header'
 import {TextButton} from '../../Components/textButton'
-import {Star} from '../../Components/stars'
+import {Stars} from '../../Components/stars'
 import {Tag} from '../../Components/tag'
 
 export function Details(){
@@ -22,12 +22,8 @@ export function Details(){
 
                 <Title>
                     <h1>Interestellar</h1>
-
-                    <Star icon={FiStar} isActive/>
-                    <Star icon={FiStar} isActive/>
-                    <Star icon={FiStar} isActive/>
-                    <Star icon={FiStar} isActive/>
-                    <Star icon={FiStar}/>
+                    
+                    <Stars icon={FiStar}/>
                 </Title>
 
 

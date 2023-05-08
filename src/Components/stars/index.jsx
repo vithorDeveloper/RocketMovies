@@ -1,13 +1,21 @@
-import { Container } from "./style";
-import { FiStar } from "react-icons/fi"
+import { Container } from './style'
 
-export function Star({icon: Icon, isActive= false, ...rest}){
-  return(
-    <Container 
-    isActive={isActive}
-    {...rest}
-    >
-      {Icon && <FiStar size={12}/>}
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+
+export function Stars({ rate }) {
+  const stars = []
+
+  for (let i = 0; i < 5; i++) {
+    let star = i < rate ? AiFillStar : AiOutlineStar
+
+    stars.push(star)
+  }
+
+  return (
+    <Container>
+      {stars.map((Star, i) => (
+        <Star key={i} />
+      ))}
     </Container>
-  )
+  );
 }
