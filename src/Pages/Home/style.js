@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100%;
-    height: 100vh;
 
     display: grid;
     grid-template-rows: auto;
@@ -10,6 +9,12 @@ export const Container = styled.div`
     "header"
     "title"
     "content";
+
+    >button{
+      position: absolute;
+      right: 1.5%;
+      top: 2%;
+    }
   
 `
 
@@ -73,6 +78,8 @@ export const MovieInfo = styled.div`
     padding: 3.2rem;
     margin-bottom:2.4rem;
     border-radius: 1.6rem;
+
+    cursor: pointer;
 
   >p{
     color: ${({theme}) => theme.colors.gray_100};

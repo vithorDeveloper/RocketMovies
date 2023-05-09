@@ -8,4 +8,6 @@ export const Container = styled.textarea`
     border-radius: 1rem;
 
     padding: 2rem 0 0 1.6rem;
+
+    resize: none;
 `

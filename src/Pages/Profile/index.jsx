@@ -1,15 +1,17 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {useAuth} from '../../hooks/auth'
 import {Container, Form, Avatar} from './style'
 import {Input} from '../../Components/input'
 import {Button} from '../../Components/button'
+import {TextButton} from '../../Components/textButton'
 import { FiArrowLeft, FiCamera, FiLock, FiMail, FiUser } from 'react-icons/fi'
 import { api } from '../../services/index'
 import  defaultAvatar  from '../../assets/avatar_placeholder.svg'
 
 export function Profile(){
     const {user, updateProfile} = useAuth()
+    const navigate = useNavigate()
 
     const [name, setName] = useState(user.name)
     const [email, setEmail] = useState(user.email)
@@ -30,22 +32,30 @@ export function Profile(){
     }
 
     async function handleUpdateProfile(){
-      const user = {
+      const update = {
         name,
         email,
         password: passwordNew,
         oldPassword: PasswordOld,
       }
 
-      await updateProfile({user, avatarFile})
+      const userUpdate = Object.assign(user, update)
+
+      await updateProfile({user: userUpdate, avatarFile})
     }
 
+    function handleBack(){
+      navigate(-1)
+    }
   return(
     <Container>
       
         <header>
           <FiArrowLeft size={18} />
-          <Link to="/">Voltar</Link> 
+          <TextButton 
+            title="voltar"
+            onClick={handleBack}
+          ></TextButton> 
         </header>
 
         <Form>

@@ -2,7 +2,7 @@ import { Container } from './style'
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
-export function Stars({ rate }) {
+export function Stars({ rate, ...rest }) {
   const stars = []
 
   for (let i = 0; i < 5; i++) {
@@ -12,7 +12,9 @@ export function Stars({ rate }) {
   }
 
   return (
-    <Container>
+    <Container
+    {...rest}
+    >
       {stars.map((Star, i) => (
         <Star key={i} />
       ))}

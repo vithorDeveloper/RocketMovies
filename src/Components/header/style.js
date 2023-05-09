@@ -16,31 +16,27 @@ export const Container = styled.header`
     >h1{
       font-size: 2.4rem;
       color: ${({theme}) => theme.colors.pink};
-      margin-right: 7rem;
     }
 
-    a{
-      display: flex;
-      text-align: right;
-      align-items: center;
-      margin-left: 7rem;
       
       color: ${({theme}) => theme.colors.white};
 
       >div{
-        width: 10rem;
-
-        p{
-        font-size: 1.4rem;
-        font-weight: 700;
-        }
+        width: 60%;
 
         span{
           font-size: 1.4rem;
           color: ${({theme}) => theme.colors.gray_300};
         }
       }
-    }
+
+      p{
+        font-size: 1.4rem;
+        font-weight: 700;
+        position: relative;
+        left: 1rem;
+        color: ${({theme}) => theme.colors.white};
+        }
 
     img{
       width: 6.4rem;
@@ -51,4 +47,8 @@ export const Container = styled.header`
 
       margin-left: 1rem;
     }
+`
+
+export const Main = styled.main`
+
 `

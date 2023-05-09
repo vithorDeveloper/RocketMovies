@@ -4,19 +4,21 @@ export const Container = styled.div`
 
     >main{
 
-      a{
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
+      >.buttonBack{
+      display: flex;
+      align-items: center;
 
-        padding: 4rem 0 2.4rem 15rem;
-      }
+      margin-left: 2%;
+      color: ${({theme}) => theme.colors.pink};
+
+      margin-top: 10rem;
     }
 
     p:nth-child(4){
       margin: 4rem 0 2.4rem;
       color: ${({theme}) => theme.colors.gray_100}
     }
+  }
 `
 export const Content= styled.div`
     width: 113rem;

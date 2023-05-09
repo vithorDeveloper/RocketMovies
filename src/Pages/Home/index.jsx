@@ -5,20 +5,49 @@ import { Header } from '../../Components/header'
 import { Button } from '../../Components/button'
 import { Stars } from '../../Components/stars'
 import { Tag } from '../../Components/tag'
-import { useNotesMovies } from "../../hooks/notesMovies"
+import { TextButton } from '../../Components/textButton'
+import { useAuth } from '../../hooks/auth'
+import { useEffect, useState } from "react"
+import { api } from "../../services"
 
 export function Home() {
 
-  const { notesMovies } = useNotesMovies()
+  const [notesMovies, setNotesMovies] = useState([])
+  const [search, setSearch] = useState("")
+
+  const { singOut} = useAuth()
+
+
   const navigate = useNavigate()
 
   function handleDetails(id){
     navigate(`/details/${id}`)
   }
 
+  useEffect(() =>{
+    async function fetchNotes(){
+      const response = await api.get(`/notesMovies?movie_title=${search}`)
+
+      setNotesMovies(response.data)
+    }
+
+    fetchNotes()
+  }, [search])
+
+  function handleSingOut(){
+    navigate('/')
+    singOut()
+  }
+
   return (
     <Container>
-          <Header/>
+          <Header
+          onChange={e => setSearch(e.target.value)}
+          />
+
+        <TextButton title="sair" onClick={ handleSingOut }>
+          </TextButton> 
+
 
           <Title>
               <h1>Meus filmes</h1>
@@ -36,6 +65,7 @@ export function Home() {
                     <MovieInfo
                     key={String(movie.id)}
                     data={movie}
+                    onClick={() => handleDetails(movie.id)}
                     >
                       <h2>{movie.movie_title}</h2>
 
@@ -63,22 +93,3 @@ export function Home() {
 
     </Container>
 )}
-
-
-// <h2>Interestellar</h2>
-
-// <Star icon={FiStar}/>
-// <Star icon={FiStar}/>
-// <Star icon={FiStar}/>
-// <Star icon={FiStar}/>
-// <Star icon={FiStar}/>
-
-// <p>
-//   Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida.
-//   Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto
-  
-// </p>
-
-// <Tag title="Ficção científica"/>
-// <Tag title="Drama"/>
-// <Tag title="Familia"/>

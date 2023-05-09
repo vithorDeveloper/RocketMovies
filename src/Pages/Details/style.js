@@ -12,15 +12,13 @@ export const Container = styled.div`
       margin-bottom: 4rem;
     }
 
-    a{
+    >.buttonBack{
       display: flex;
       align-items: center;
-      gap: 0.6rem;
 
-      margin-left: 11.4rem;
-
-      grid-area: textButton;
-    }    
+      margin-left: 2%;
+      color: ${({theme}) => theme.colors.pink};
+    }
 `
 
 export const Main = styled.div`

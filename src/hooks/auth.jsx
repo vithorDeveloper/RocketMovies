@@ -72,8 +72,8 @@ export const AuthContext = createContext({});
     }
 
     useEffect(() => {
-      const user = localStorage.getItem('@Rocketmovies : user')
-      const token = localStorage.getItem('@Rocketmovies : token')
+      const user = localStorage.getItem('@Rocketmovies:user')
+      const token = localStorage.getItem('@Rocketmovies:token')
 
       if(user && token){
 

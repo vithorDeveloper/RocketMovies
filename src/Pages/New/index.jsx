@@ -33,7 +33,7 @@ export function New(){
     }
 
     async function handleNewNote(){
-      if(!title || !notes || !newTag){
+      if(!title || !notes || !tag){
         alert("exitem campos vazios ou que faltam ser adicionados")
       }
 
@@ -41,7 +41,11 @@ export function New(){
   
       alert("nota criada com sucesso")
   
-      navigate("/")
+      navigate(-1)
+    }
+
+    function handleBack(){
+      navigate(-1)
     }
 
   return(
@@ -50,9 +54,14 @@ export function New(){
 
         <main>
 
-          <Link to='/'>
-            <TextButton icon={FiArrowLeft} title="voltar"/>
-          </Link>
+          <div className="buttonBack">
+          <FiArrowLeft size={18} />
+            <TextButton 
+              title="voltar"
+              onClick={handleBack}
+            >
+              </TextButton>
+          </div>
 
           <Content>
 
